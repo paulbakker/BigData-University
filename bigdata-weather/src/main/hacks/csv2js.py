@@ -21,8 +21,7 @@ for line in fileinput.input(sys.argv[1]):
 output = []
 
 for station in knmi.keys():
-    record = { 'data': knmi[station],
-               'label': station }
+    record = { 'data': knmi[station] }
     output.append(record)
 
 print 'knmi = ' + json.dumps(output) + ';'

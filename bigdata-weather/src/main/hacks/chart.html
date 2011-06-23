@@ -11,7 +11,8 @@
     <script language="javascript" type="text/javascript" src="data.js"></script> 
  </head> 
     <body> 
-    <div id="knmi" style="width:95%;height:500px;"></div>
+        <div id="knmi" style="width:95%;height:500px;"></div><br/>
+        <div id="overview" style="width:95%;height:80px"></div>
 	
 	<script id="source"> 
 	$(function () {
@@ -23,6 +24,29 @@
 
         var plot = $.plot($("#knmi"), knmi, options);
 
+        var overview = $.plot($("#overview"), knmi, {
+	        series: {
+	            lines: { show: true, lineWidth: 1 },
+	            shadowSize: 0
+	        },
+	        xaxis: { ticks: [], mode: "time" },
+	        yaxis: { ticks: [], min: 0, autoscaleMargin: 0.1 },
+	        selection: { mode: "x" }
+        });
+
+        $("#knmi").bind("plotselected", function (event, ranges) {
+	        // do the zooming
+	        plot = $.plot($("#knmi"), knmi,
+	                      $.extend(true, {}, options, {
+	                          xaxis: { min: ranges.xaxis.from, max: ranges.xaxis.to }
+	                      }));
+
+	        // don't fire event on the overview to prevent eternal loop
+	        overview.setSelection(ranges, true);
+	    });
+	    $("#overview").bind("plotselected", function (event, ranges) {
+	        plot.setSelection(ranges);
+	    });
 	});
 	</script>
  
