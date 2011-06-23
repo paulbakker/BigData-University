@@ -35,10 +35,10 @@ public class AverageDailyPrecipitationPerMonthMapReduceTest {
         assertThat(output.size(), is(2));
 
         assertThat(output.get(0).getFirst(), equalTo(new Text("240,201001")));
-        assertThat(output.get(0).getSecond(), equalTo(new LongWritable(1)));
+        assertThat(output.get(0).getSecond(), equalTo(new LongWritable(24)));
 
         assertThat(output.get(1).getFirst(), equalTo(new Text("260,201001")));
-        assertThat(output.get(1).getSecond(), equalTo(new LongWritable(5)));
+        assertThat(output.get(1).getSecond(), equalTo(new LongWritable(108)));
     }
 
     @Test
@@ -56,15 +56,15 @@ public class AverageDailyPrecipitationPerMonthMapReduceTest {
         assertThat(output.size(), is(4));
 
         assertThat(output.get(0).getFirst(), equalTo(new Text("240,201001")));
-        assertThat(output.get(0).getSecond(), equalTo(new LongWritable(1)));
+        assertThat(output.get(0).getSecond(), equalTo(new LongWritable(24)));
 
         assertThat(output.get(1).getFirst(), equalTo(new Text("240,201002")));
-        assertThat(output.get(1).getSecond(), equalTo(new LongWritable(7)));
+        assertThat(output.get(1).getSecond(), equalTo(new LongWritable(168)));
 
         assertThat(output.get(2).getFirst(), equalTo(new Text("260,201001")));
-        assertThat(output.get(2).getSecond(), equalTo(new LongWritable(5)));
+        assertThat(output.get(2).getSecond(), equalTo(new LongWritable(108)));
 
         assertThat(output.get(3).getFirst(), equalTo(new Text("260,201002")));
-        assertThat(output.get(3).getSecond(), equalTo(new LongWritable(6)));
+        assertThat(output.get(3).getSecond(), equalTo(new LongWritable(144)));
     }
 }

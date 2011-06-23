@@ -19,12 +19,12 @@ public class JobRunner extends Configured implements Tool {
 
     @Override
     public int run(String[] args) throws Exception {
-        if (args.length != 3) {
+        if (args.length != 2) {
             printUsageInfo();
             return 1;
         }
 
-        Job job = AverageDailyPrecipitationPerMonth.createJob(getConf(), new Path(args[1]), new Path(args[2]));
+        Job job = AverageDailyPrecipitationPerMonth.createJob(getConf(), new Path(args[0]), new Path(args[1]));
 
         return job.waitForCompletion(true) ? 0 : 1;
     }

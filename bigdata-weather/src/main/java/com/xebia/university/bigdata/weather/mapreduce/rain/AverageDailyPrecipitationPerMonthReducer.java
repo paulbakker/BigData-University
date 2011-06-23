@@ -29,6 +29,6 @@ public class AverageDailyPrecipitationPerMonthReducer extends Reducer<Text, Long
             count++;
         }
 
-        return Math.round(sum / count);
+        return Math.round(sum * 24 / count);
     }
 }

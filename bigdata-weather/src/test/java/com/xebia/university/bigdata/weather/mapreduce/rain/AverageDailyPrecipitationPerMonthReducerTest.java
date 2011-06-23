@@ -30,7 +30,7 @@ public class AverageDailyPrecipitationPerMonthReducerTest {
 
         assertThat(output.size(), is(1));
         assertThat(output.get(0).getFirst(), equalTo(new Text("420,201001")));
-        assertThat(output.get(0).getSecond(), equalTo(new LongWritable(3)));
+        assertThat(output.get(0).getSecond(), equalTo(new LongWritable(72)));
     }
 
     @Test
@@ -42,6 +42,6 @@ public class AverageDailyPrecipitationPerMonthReducerTest {
 
         assertThat(output.size(), is(1));
         assertThat(output.get(0).getFirst(), equalTo(new Text("420,201001")));
-        assertThat(output.get(0).getSecond(), equalTo(new LongWritable(2)));
+        assertThat(output.get(0).getSecond(), equalTo(new LongWritable(36)));
     }
 }
