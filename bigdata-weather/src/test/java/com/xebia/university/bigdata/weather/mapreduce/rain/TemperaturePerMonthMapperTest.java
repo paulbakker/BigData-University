@@ -12,13 +12,13 @@ import org.apache.hadoop.mrunit.types.Pair;
 import org.junit.Before;
 import org.junit.Test;
 
-public class PrecipitationPerMonthMapperTest {
+public class TemperaturePerMonthMapperTest {
     private MapDriver<LongWritable, Text, Text, LongWritable> driver;
     private List<Pair<Text, LongWritable>> output;
 
     @Before
     public void setUp() throws Exception {
-        driver = new MapDriver<LongWritable, Text, Text, LongWritable>(new PrecipitationPerMonthMapper());
+        driver = new MapDriver<LongWritable, Text, Text, LongWritable>(new TemperaturePerMonthMapper());
     }
 
     @Test
@@ -29,7 +29,7 @@ public class PrecipitationPerMonthMapperTest {
 
         assertThat(output.size(), is(1));
         assertThat(output.get(0).getFirst(), equalTo(new Text("391,201101")));
-        assertThat(output.get(0).getSecond(), equalTo(new LongWritable(4)));
+        assertThat(output.get(0).getSecond(), equalTo(new LongWritable(27)));
     }
 
     @Test
@@ -47,16 +47,5 @@ public class PrecipitationPerMonthMapperTest {
                        .run();
 
         assertThat(output.size(), is(0));
-    }
-
-    @Test
-    public void shouldExtractDataWithNeglectablePrecipitationAsZero() throws Exception {
-        output = driver.withInputKey(new LongWritable(0))
-                       .withInputValue(new Text("  391,20110101,   12,  290,   30,   20,   60,   27,    7,   27,    0,   13,    8,   -1,     ,     ,     ,  100,     ,     ,     ,     ,     ,"))
-                       .run();
-
-        assertThat(output.size(), is(1));
-        assertThat(output.get(0).getFirst(), equalTo(new Text("391,201101")));
-        assertThat(output.get(0).getSecond(), equalTo(new LongWritable(0)));
     }
 }

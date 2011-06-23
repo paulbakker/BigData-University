@@ -8,7 +8,7 @@ import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.util.Tool;
 import org.apache.hadoop.util.ToolRunner;
 
-import com.xebia.university.bigdata.weather.mapreduce.rain.AverageDailyPrecipitationPerMonth;
+import com.xebia.university.bigdata.weather.mapreduce.rain.AverageDailyTemperaturePerMonth;
 
 
 public class JobRunner extends Configured implements Tool {
@@ -24,7 +24,7 @@ public class JobRunner extends Configured implements Tool {
             return 1;
         }
 
-        Job job = AverageDailyPrecipitationPerMonth.createJob(getConf(), new Path(args[0]), new Path(args[1]));
+        Job job = AverageDailyTemperaturePerMonth.createJob(getConf(), new Path(args[0]), new Path(args[1]));
 
         return job.waitForCompletion(true) ? 0 : 1;
     }

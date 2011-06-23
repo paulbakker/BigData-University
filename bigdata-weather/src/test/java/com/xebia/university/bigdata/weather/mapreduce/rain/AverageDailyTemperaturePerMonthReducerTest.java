@@ -12,13 +12,13 @@ import org.apache.hadoop.mrunit.types.Pair;
 import org.junit.Before;
 import org.junit.Test;
 
-public class AverageDailyPrecipitationPerMonthReducerTest {
+public class AverageDailyTemperaturePerMonthReducerTest {
     private ReduceDriver<Text, LongWritable, Text, LongWritable> driver;
     private List<Pair<Text, LongWritable>> output;
 
     @Before
     public void setUp() throws Exception {
-        driver = new ReduceDriver<Text, LongWritable, Text, LongWritable>(new AverageDailyPrecipitationPerMonthReducer());
+        driver = new ReduceDriver<Text, LongWritable, Text, LongWritable>(new AverageDailyTemperaturePerMonthReducer());
     }
 
     @Test
@@ -30,7 +30,7 @@ public class AverageDailyPrecipitationPerMonthReducerTest {
 
         assertThat(output.size(), is(1));
         assertThat(output.get(0).getFirst(), equalTo(new Text("420,201001")));
-        assertThat(output.get(0).getSecond(), equalTo(new LongWritable(72)));
+        assertThat(output.get(0).getSecond(), equalTo(new LongWritable(3)));
     }
 
     @Test
@@ -42,6 +42,6 @@ public class AverageDailyPrecipitationPerMonthReducerTest {
 
         assertThat(output.size(), is(1));
         assertThat(output.get(0).getFirst(), equalTo(new Text("420,201001")));
-        assertThat(output.get(0).getSecond(), equalTo(new LongWritable(36)));
+        assertThat(output.get(0).getSecond(), equalTo(new LongWritable(2)));
     }
 }

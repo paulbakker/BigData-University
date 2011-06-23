@@ -25,6 +25,7 @@ public class KnmiHourlyLineParserTest {
         assertEquals("20110101", parser.getDate());
         assertEquals("11", parser.getHour());
         assertEquals(4, parser.getPrecipitation());
+        assertEquals(27, parser.getTemperature());
     }
 
 }

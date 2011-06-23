@@ -8,7 +8,7 @@ public class KnmiHourlyLineParser extends KnmiLineParser {
     }
 
     private static enum KnmiDailyLineField {
-        STN(0), YYYYMMDD(1), HH(2), RH(13);
+        STN(0), YYYYMMDD(1), HH(2), T(7), RH(13);
 
         public final int position;
 
@@ -32,5 +32,9 @@ public class KnmiHourlyLineParser extends KnmiLineParser {
 
     public long getPrecipitation() {
         return getLongField(KnmiDailyLineField.RH.position);
+    }
+
+    public long getTemperature() {
+        return getLongField(KnmiDailyLineField.T.position);
     }
 }
