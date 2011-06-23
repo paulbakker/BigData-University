@@ -19,45 +19,10 @@
 		{
 			xaxis: { mode: "time"},
 	        selection: { mode: "x" }
-		};
-		
-		var plot = $.plot($("#knmi"), [
-			{
-				data: knmi["210"],
-			},
-			{
-				data: knmi["249"],
-			},
-			{
-				data: knmi["277"],
-			}
-		], options
-		);
+        };
 
-        /*
-	    var overview = $.plot($("#overview"), [wiki, knmi, averages], {
-	        series: {
-	            lines: { show: true, lineWidth: 1 },
-	            shadowSize: 0
-	        },
-	        xaxis: { ticks: [], mode: "time" },
-	        yaxis: { ticks: [], min: 0, autoscaleMargin: 0.1 },
-	        selection: { mode: "x" }
-	    });
-	
-	    $("#wiki").bind("plotselected", function (event, ranges) {
-	        // do the zooming
-	        plot = $.plot($("#wiki"), [wiki, knmi, averages],
-	                      $.extend(true, {}, options, {
-	                          xaxis: { min: ranges.xaxis.from, max: ranges.xaxis.to }
-	                      }));
+        var plot = $.plot($("#knmi"), knmi, options);
 
-	        // don't fire event on the overview to prevent eternal loop
-	        overview.setSelection(ranges, true);
-	    });
-	    $("#overview").bind("plotselected", function (event, ranges) {
-	        plot.setSelection(ranges);
-	    });*/
 	});
 	</script>
  

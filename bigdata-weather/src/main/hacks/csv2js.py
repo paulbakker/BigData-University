@@ -18,4 +18,11 @@ for line in fileinput.input(sys.argv[1]):
 
     knmi[station].append([long (mktime(time.timetuple())) * 1000, percipitation])
 
-print 'knmi = ' + json.dumps(knmi) + ';' 
+output = []
+
+for station in knmi.keys():
+    record = { 'data': knmi[station],
+               'label': station }
+    output.append(record)
+
+print 'knmi = ' + json.dumps(output) + ';'
