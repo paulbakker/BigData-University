@@ -4,11 +4,18 @@ import json
 import fileinput
 import sys
 
-knmi = []
+knmi = {}
 
 for line in fileinput.input(sys.argv[1]):
-	parts = line.strip().split(',')
-	time = datetime.strptime(parts[1], '%Y%m')
-	knmi.append([long (mktime(time.timetuple())) * 1000, parts[2]])
+    parts = line.strip().split(',')
 
-print('knmi = ' + json.dumps(knmi) + ';')
+    station = parts[0]
+    time = datetime.strptime(parts[1], '%Y%m')
+    percipitation = int(parts[2])
+
+    if station not in knmi:
+        knmi[station] = []
+
+    knmi[station].append([long (mktime(time.timetuple())) * 1000, percipitation])
+
+print 'knmi = ' + json.dumps(knmi) + ';' 

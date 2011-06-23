@@ -4,8 +4,6 @@
  <head> 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
     <title>Chart</title> 
-    <link href="layout.css" rel="stylesheet" type="text/css"> 
-    <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="../excanvas.min.js"></script><![endif]--> 
     <script language="javascript" type="text/javascript" src="flot/jquery.js"></script> 
     <script language="javascript" type="text/javascript" src="flot/jquery.flot.js"></script> 
 	<script language="javascript" type="text/javascript" src="flot/jquery.flot.selection.js"></script>
@@ -13,8 +11,7 @@
     <script language="javascript" type="text/javascript" src="data.js"></script> 
  </head> 
     <body> 
-    <div id="wiki" style="width:95%;height:500px;"></div><br/>
-	<div id="overview" style="width:95%;height:80px"></div>
+    <div id="knmi" style="width:95%;height:500px;"></div>
 	
 	<script id="source"> 
 	$(function () {
@@ -24,23 +21,20 @@
 	        selection: { mode: "x" }
 		};
 		
-		var plot = $.plot($("#wiki"), [
+		var plot = $.plot($("#knmi"), [
 			{
-				data: wiki,
-				bars: {show: true}
+				data: knmi["210"],
 			},
 			{
-				data: averages,
-				lines: {show: true},
-				color: 'rgb(120, 120, 120, 1.0)'
+				data: knmi["249"],
 			},
 			{
-				data: knmi,
-				bars: {show: true}
+				data: knmi["277"],
 			}
 		], options
 		);
-		
+
+        /*
 	    var overview = $.plot($("#overview"), [wiki, knmi, averages], {
 	        series: {
 	            lines: { show: true, lineWidth: 1 },
@@ -63,7 +57,7 @@
 	    });
 	    $("#overview").bind("plotselected", function (event, ranges) {
 	        plot.setSelection(ranges);
-	    });
+	    });*/
 	});
 	</script>
  
